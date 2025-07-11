@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Color
 //Color palette was taken here: https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557
 
 internal val Seed = Color(0xFF1D3557)
+internal val Orange=Color(0xFFFFA500)
 
 internal val PrimaryLight = Color(0xFF485F84)
 internal val OnPrimaryLight = Color(0xFFFFFFFF)
