@@ -1,6 +1,12 @@
 # Compose Multiplatform Application
 
 ```markdown
+
+
+## App Screenshot
+<img src="https://raw.githubusercontent.com/AndroidPoet/BitCoinDemo/refs/heads/master/App%20Screenshot.png?token=GHSAT0AAAAAADFEVGALDFRDC326VAMUKWGY2DRPHMQ" alt="Bitcoin Demo App Screenshot" width="300" height="600">
+
+
 # Mobile Development Interview Answers
 
 ## 1. Optimizing Network Consumption for Large Address Lists
