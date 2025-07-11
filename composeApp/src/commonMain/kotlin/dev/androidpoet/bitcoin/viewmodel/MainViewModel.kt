@@ -9,16 +9,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import kotlin.math.pow
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
-data class UiState(
-    val isLoading: Boolean = true,
-    val totalBalance: Long = 0L,
-    val transactions: List<Transaction> = emptyList(),
-    val error: String? = null,
-    val lastUpdated: Long = 0L
-)
 
 class MainViewModel(private val repository: BitcoinRepository) : ViewModel() {
 
@@ -32,14 +26,11 @@ class MainViewModel(private val repository: BitcoinRepository) : ViewModel() {
     @OptIn(ExperimentalTime::class)
     private fun startRealtimeUpdates() {
         viewModelScope.launch {
-            repository.getRealtimeUpdates()
-                .catch { e ->
+            repository.getRealtimeUpdates().catch { e ->
                     _uiState.value = _uiState.value.copy(
-                        error = "Network error: ${e.message}",
-                        isLoading = false
+                        error = "Network error: ${e.message}", isLoading = false
                     )
-                }
-                .collect { (balance, transactions) ->
+                }.collect { (balance, transactions) ->
                     _uiState.value = UiState(
                         isLoading = false,
                         totalBalance = balance,
@@ -57,4 +48,30 @@ class MainViewModel(private val repository: BitcoinRepository) : ViewModel() {
     }
 
 
+    fun formatSatoshis(satoshis: Long): String {
+        val btc = satoshis / 100_000_000.0
+        return "${btc.toPlainString(8)} BTC"
+    }
+
+    // Helper extension to format to fixed decimal places
+    private fun Double.toPlainString(decimalPlaces: Int): String {
+        val factor = 10.0.pow(decimalPlaces)
+        val rounded = kotlin.math.round(this * factor) / factor
+        return buildString {
+            append(rounded)
+            val dotIndex = indexOf('.')
+            val actualDecimals = if (dotIndex >= 0) length - dotIndex - 1 else 0
+            repeat(decimalPlaces - actualDecimals) { append('0') }
+            if (actualDecimals == 0) append(".").append("0".repeat(decimalPlaces))
+        }
+    }
+
 }
+
+data class UiState(
+    val isLoading: Boolean = true,
+    val totalBalance: Long = 0L,
+    val transactions: List<Transaction> = emptyList(),
+    val error: String? = null,
+    val lastUpdated: Long = 0L
+)

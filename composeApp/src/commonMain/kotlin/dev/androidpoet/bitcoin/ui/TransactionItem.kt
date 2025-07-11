@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.androidpoet.bitcoin.network.model.Transaction
+import dev.androidpoet.bitcoin.theme.DarkGreen
 import dev.androidpoet.bitcoin.theme.Orange
 
 
@@ -36,7 +37,8 @@ fun TransactionItem(
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -66,13 +68,13 @@ fun TransactionItem(
                             Icons.Default.CheckCircle else Icons.Default.Schedule,
                         contentDescription = transaction.confirmationStatus,
                         tint = if (transaction.isConfirmed)
-                            Color.Green else Orange,
+                            DarkGreen else Orange,
                         modifier = Modifier.size(16.dp)
                     )
                     Text(
                         text = if (transaction.isConfirmed) "Confirmed" else "Unconfirmed",
                         style = MaterialTheme.typography.bodySmall,
-                        color = if (transaction.isConfirmed) Color.Green else Orange,
+                        color = if (transaction.isConfirmed) DarkGreen else Orange,
                         fontWeight = FontWeight.Medium
                     )
                 }

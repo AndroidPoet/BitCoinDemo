@@ -18,8 +18,8 @@ class AppKtorLogger : io.ktor.client.plugins.logging.Logger {
     }
 }
 
-
-private val httpClient = HttpClient() {
+fun provideKtorClient(): HttpClient = HttpClient() {
+    expectSuccess = true
     install(ContentNegotiation) {
         json(Json {
             ignoreUnknownKeys = true
@@ -38,10 +38,5 @@ private val httpClient = HttpClient() {
         connectTimeoutMillis = 30_000
         socketTimeoutMillis = 30_000
     }
-    defaultRequest {
-        url("https://blockstream.info/testnet/api")
-        headers {
-            append("User-Agent", "BitcoinDemo/1.0")
-        }
-    }
+
 }

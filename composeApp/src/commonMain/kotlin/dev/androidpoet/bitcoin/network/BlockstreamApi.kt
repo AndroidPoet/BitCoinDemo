@@ -9,15 +9,19 @@ import io.ktor.client.request.get
 class BlockstreamApi(private val client: HttpClient) {
 
     suspend fun getAddressInfo(address: String): AddressInfo {
-        return client.get("/address/$address").body()
+        return client.get("$TESTNET_BASE_URL/address/$address").body()
     }
 
     suspend fun getAddressTransactions(address: String): List<Transaction> {
-        return client.get("/address/$address/txs").body()
+        return client.get("$TESTNET_BASE_URL/address/$address/txs").body()
     }
 
     suspend fun getTransaction(txid: String): Transaction {
-        return client.get("/tx/$txid").body()
+        return client.get("$TESTNET_BASE_URL/tx/$txid").body()
+    }
+
+    companion object {
+        const val TESTNET_BASE_URL = "https://blockstream.info/testnet/api"
     }
 
 }

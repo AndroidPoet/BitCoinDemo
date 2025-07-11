@@ -53,6 +53,9 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.kotlinx.datetime)
             implementation(compose.materialIconsExtended)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
 
         commonTest.dependencies {

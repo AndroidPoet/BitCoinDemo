@@ -1,4 +1,4 @@
-package dev.androidpoet.bitcoin.ui
+package dev.androidpoet.bitcoin.ui.compoents
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

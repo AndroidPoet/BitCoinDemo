@@ -26,14 +26,13 @@ class BitcoinRepository(private val api: BlockstreamApi) {
         "tb1quwf0s47w48pdlhs24m50n0m4h70ll2melgezcz"
     )
 
-    suspend fun getTotalBalance(): Long = coroutineScope {
+    private suspend fun getTotalBalance(): Long = coroutineScope {
         try {
             val balances = watchedAddresses.map { address ->
                 async {
                     try {
                         api.getAddressInfo(address).totalBalance
                     } catch (e: Exception) {
-                        // TODO: Add proper error logging
                         0L
                     }
                 }
@@ -58,7 +57,6 @@ class BitcoinRepository(private val api: BlockstreamApi) {
             }
 
             allTransactions.awaitAll().flatten().distinctBy { it.txid }.sortedByDescending { tx ->
-                // Sort by block time for confirmed, or current time for unconfirmed
                 tx.status.blockTime ?: (Clock.System.now().epochSeconds / 1000)
             }
         } catch (e: Exception) {
