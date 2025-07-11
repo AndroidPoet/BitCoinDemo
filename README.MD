@@ -1,13 +1,24 @@
 # Compose Multiplatform Application
 
-## Before running!
- - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)  
- - install JDK 17 or higher on your machine  
- - add `local.properties` file to the project root and set a path to Android SDK there  
+```markdown
+# Mobile Development Interview Answers
 
-### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration  
+## 1. Optimizing Network Consumption for Large Address Lists
+
+**Use pagination and lazy loading** - Load only 20-30 addresses at a time, show more when user scrolls down. Use pull-to-refresh with 2-3 second delay to avoid too many API calls.
+
+## 2. Transaction State Management Strategy
+
+**Use WebSocket or smart polling** - Connect to WebSocket for real-time updates, or check transaction status every 30 seconds initially, then reduce frequency for old transactions.
+
+## 3. Alternative to Address Lists
+
+**Use HD wallet with xpub key** - Instead of storing many addresses, use one master key to generate new addresses when needed. This is more secure and efficient.
+
+## 4. Protecting Sensitive Bitcoin Address Information
+
+**Generate addresses locally** - Don't store addresses on device or server. Generate them from seed phrase when required, so sensitive data never gets exposed or transmitted.
+```
 
 To build the application bundle:  
  - run `./gradlew :composeApp:assembleDebug`  
