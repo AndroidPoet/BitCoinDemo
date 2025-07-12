@@ -3,7 +3,7 @@
 
 
 ## App Screenshot
-<img src="https://raw.githubusercontent.com/AndroidPoet/BitCoinDemo/refs/heads/master/App%20Screenshot.png?token=GHSAT0AAAAAADFEVGALDFRDC326VAMUKWGY2DRPHMQ" alt="Bitcoin Demo App Screenshot" width="300" height="800">
+<img src="https://raw.githubusercontent.com/AndroidPoet/BitCoinDemo/refs/heads/master/App%20Screenshot.png" alt="Bitcoin Demo App Screenshot" width="300" height="800">
 
 
 ```markdown
