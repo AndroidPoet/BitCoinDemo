@@ -55,3 +55,10 @@ To run the application on iPhone device/simulator:
 
 Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`  
 
+## Contributing
+
+Contributions are welcome! If you've found a bug, have an idea for an improvement, or want to contribute new features, please open an issue or submit a pull request.
+
+## Find this repository useful? :heart:
+Support it by joining __[stargazers](https://github.com/androidpoet/bitcoindemo/stargazers)__ for this repository. :star: <br>
+Also, __[follow me](https://github.com/androidpoet)__ on GitHub for my next creations! 🤩
